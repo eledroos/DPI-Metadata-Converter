@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - DPI Metadata Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        #content {
+            max-width: 600px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1em;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            #content {
+                font-size: 0.8em;
+            }
+
+            a {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>How This Tool Works</h1>
+    <div id="content">
+        <p>The DPI Metadata Converter is a JavaScript-based tool that operates entirely within your web browser. It is designed to modify the DPI (dots per inch) metadata of image files to meet specific technical requirements. Here's a detailed breakdown of how the tool works:</p>
+
+        <h2>1. Image Upload</h2>
+        <p>When you select an image file using the file <i>Browse...</i> button, the JavaScript `FileReader` API is used to read the contents of the file. The `FileReader` reads the image file as a Data URL, which is a base64 encoded string that represents the image data.</p>
+
+        <h2>2. Optional DPI Input</h2>
+        <p>You have the option to enter a desired DPI value into a number input field. If you leave this field blank, the tool will use a default value of 75 DPI. This value is stored in a JavaScript variable for later use.</p>
+
+        <h2>3. Image Processing</h2>
+        <p>Once the image is loaded and the DPI value is set, the tool proceeds to modify the image's DPI metadata. This process involves several key steps:</p>
+        
+        <ul>
+            <li><strong>File Conversion (if necessary):</strong> If the uploaded image is in HEIC format (commonly used by iPhones), it is first converted to JPEG format using the `heic2any` library. This library converts the HEIC file into a more widely supported JPEG format, ensuring compatibility with systems that may not accept HEIC images.</li>
+            <li><strong>Canvas Rendering:</strong> The image is then rendered onto an HTML5 canvas element using the `drawImage` method. This allows the tool to manipulate the image data directly.</li>
+            <li><strong>DPI Modification:</strong> After the image is rendered onto the canvas, the canvas content is converted back into a Blob (binary large object) using the `canvas.toBlob` method. This Blob is then converted into a base64 string, and the EXIF metadata is extracted using the `piexifjs` library. The EXIF data is modified to include the specified DPI value for both the XResolution and YResolution tags. Finally, the modified EXIF data is reinserted into the image.</li>
+        </ul>
+
+        <h2>4. Privacy-Preserving Processing</h2>
+        <p>All of these operations—reading the image, modifying its DPI metadata, and re-encoding the image—happen entirely within your web browser. This means that your image data never leaves your device, ensuring complete privacy. The tool does not send any data to a server, and no data is stored or transmitted outside of your local machine.</p>
+
+        <h2>5. DPI Display and Download</h2>
+        <p>Once the DPI has been modified, the tool extracts the updated DPI values from the image and displays them on the screen. You can then download the modified image file directly to your device by clicking the "Download Converted Image" link. The downloaded image will include the new DPI settings in its metadata.</p>
+
+        <h2>6. No Data Collection</h2>
+        <p>The tool does not collect, store, or transmit any of your data. Everything is processed locally on your device, so you retain full control over your image files. This ensures that your privacy is protected and that your data remains secure.</p>
+    </div>
+    <a href="index.html">Back to Home</a>
+    <p></p>
+</body>
+</html>

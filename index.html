@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPI Metadata Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px; /* Increased width */
+            text-align: center;
+        }
+
+        input[type="number"]::placeholder {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #dpiInfo {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #downloadLink {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+
+        #downloadLink:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+        #explanation {
+            max-width: 600px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        #privacy {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+            max-width: 600px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button, input[type="file"], input[type="number"] {
+                font-size: 1em;
+                padding: 10px;
+                width: 100%;
+            }
+
+            #dpiInfo {
+                font-size: 1em;
+            }
+
+            #downloadLink {
+                font-size: 1em;
+            }
+
+            #explanation {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>DPI Metadata Converter</h1>
+    <h2>A Response to Pennsylvania’s Voter Registration Barriers</h2>
+    <input type="file" id="uploadImage" accept="image/*">
+    <input type="number" id="desiredDpi" placeholder="Enter Desired DPI (default 75)">
+    <button id="convertButton">Convert DPI</button>
+    <div id="dpiInfo"></div>
+    <a id="downloadLink" style="display: none;">Download Converted Image</a>
+
+    <div id="privacy">
+        <p><b>What is this tool? </b><br>This tool was created to assist Pennsylvania residents, especially those without a driver's license, in overcoming technical barriers to online voter registration. All image processing occurs entirely within your browser, ensuring that no data is sent to any server. Your privacy is fully protected, and no data ever leaves your device.</p>
+    </div>
+
+    <div id="explanation">
+        <p>
+            <b>Why is this necessary? </b><br>This tool is designed to help users modify the DPI (dots per inch) metadata of their images, particularly when dealing with systems that require specific DPI settings for uploads, such as voter registration portals. By converting the DPI to 75 (or a user-specified value), this tool ensures that your image meets the technical requirements necessary to be accepted by such systems.
+        </p>
+        <p>
+            DPI is often misunderstood as it is primarily a print-related metric. However, some online systems use DPI as a validation check for image quality. This tool simplifies the process, allowing users to quickly adjust their images' DPI metadata without needing specialized software.
+        </p>
+        <p>
+            Created by <a href="https://www.linkedin.com/in/nassereledroos/">Nasser Eledroos</a>. Learn <a href="how-it-works.html">how this page works</a>, or read our <a href="privacy-policy.html">privacy policy</a>.
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/9.0.1/pica.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.1/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
+    <script src="app.js"></script>
+</body>
+</html>
